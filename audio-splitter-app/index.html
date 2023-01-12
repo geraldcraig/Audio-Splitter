@@ -6,24 +6,26 @@
     <h1>Audio splitting software</h1>
 
     <h3>Audio processing options:</h3>
-    <form action="">
+    <form action="/processaudio.html" method="post" target="_blank">
         <h1>Select 2, 4 or 5 stems</h1>
-        <input type="radio" id="html" name="fav_language" value="HTML">
+        <input type="radio" id="html" name="stems" value="2-stems">
         <label for="2-stems">2-stems</label><br>
-        <input type="radio" id="css" name="fav_language" value="CSS">
+        <input type="radio" id="css" name="stems" value="4-stems">
         <label for="4-stems">4-stems</label><br>
-        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <input type="radio" id="javascript" name="stems" value="5-stems">
         <label for="5-stems">5-stems</label>
 
         <h1>Select a file to process</h1>
         <label for="myfile">Select a location:</label>
-        <input type="file" id="myfile" name="myfile"><br><br>
+        <input type="file" id="file" name="file"><br><br>
 
         <h1>Select location to save stems</h1>
         <label for="myfile">Select a location:</label>
-        <input type="file" id="myfile" name="myfile"><br><br>
+        <input type="file" id="folder" name="folder"><br><br>
         <input type="submit">
     </form>
+
+    
 
 </body>
 
