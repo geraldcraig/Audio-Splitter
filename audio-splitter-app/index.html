@@ -5,27 +5,39 @@
 
     <h1>Audio splitting software</h1>
 
-    <h3>Audio processing options:</h3>
-    <form action="/processaudio.html" method="post" target="_blank">
-        <h1>Select 2, 4 or 5 stems</h1>
-        <input type="radio" id="html" name="stems" value="2-stems">
-        <label for="2-stems">2-stems</label><br>
-        <input type="radio" id="css" name="stems" value="4-stems">
-        <label for="4-stems">4-stems</label><br>
-        <input type="radio" id="javascript" name="stems" value="5-stems">
-        <label for="5-stems">5-stems</label>
+    <form action="/processaudio.html" method="get" target="_blank">
+    <fieldset>
+        <legend>Audio processing options</legend>
+        <input type="radio" id="stems" name="stems" value="2-stems">
+        <label for="2-stems">2-stems: Vocal + Other</label><br>
+        <input type="radio" id="stems" name="stems" value="4-stems">
+        <label for="4-stems">4-stems: Vocal + Other</label><br>
+        <input type="radio" id="stems" name="stems" value="5-stems">
+        <label for="5-stems">5-stems: Vocal + Other</label> 
+    </fieldset>
 
-        <h1>Select a file to process</h1>
-        <label for="myfile">Select a location:</label>
-        <input type="file" id="file" name="file"><br><br>
+    <br><br>  
 
-        <h1>Select location to save stems</h1>
-        <label for="myfile">Select a location:</label>
-        <input type="file" id="folder" name="folder"><br><br>
-        <input type="submit">
-    </form>
+    <fieldset>
+        <legend>Select an audio file to process</legend>
+        <label for="audio-file">Select a location:</label>
+        <input type="file" id="audio-file" name="audio-file">
+    </fieldset>
 
-    
+    <br><br> 
+
+    <fieldset>
+        <legend>Select location to save stems</legend>
+        <label for="folder">Select a location:</label>
+        <input type="file" id="folder" name="folder">
+        
+    </fieldset>
+
+    <br><br>  
+
+    <input type="submit">
+       
+    </form>   
 
 </body>
 
