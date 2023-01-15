@@ -1,43 +1,85 @@
-<!DOCTYPE html>
-<html>
+<!Doctype html>
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Audio Splitter</title>
+</head>
 <body>
-
-    <h1>Audio splitting software</h1>
-
-    <form action="/processaudio.html" method="get" target="_blank">
+   <form class="form" method="post">
     <fieldset>
-        <legend>Audio processing options</legend>
-        <input type="radio" id="stems" name="stems" value="2-stems">
-        <label for="2-stems">2-stems: Vocal + Other</label><br>
-        <input type="radio" id="stems" name="stems" value="4-stems">
-        <label for="4-stems">4-stems: Vocal + Other</label><br>
-        <input type="radio" id="stems" name="stems" value="5-stems">
-        <label for="5-stems">5-stems: Vocal + Other</label> 
-    </fieldset>
+      <legend>Audio processing options</legend>
+      <input type="radio" id="stems" name="stems" value="spleeter:2stems">
+      <label for="2-stems">2-stems: Vocal + Other</label><br>
+      <input type="radio" id="stems" name="stems" value="spleeter:4stems">
+      <label for="4-stems">4-stems: Vocal + Drums + Bass + Other</label><br>
+      <input type="radio" id="stems" name="stems" value="spleeter:5stems">
+      <label for="5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</label> 
+  </fieldset>
 
-    <br><br>  
+  <br><br> 
 
-    <fieldset>
-        <legend>Select an audio file to process</legend>
-        <label for="audio-file">Select audio file:</label>
-        <input type="file" id="audio-file" name="audio-file">
-    </fieldset>
+  <fieldset>
+    <legend>Select an audio file to process</legend>
+    <label for="file">Select audio file:</label>
+    <input type="text" id="file" name="file">
+</fieldset>
 
-    <br><br> 
+<br><br> 
+      
+<fieldset>
+  <legend>Select location to save stems</legend>
+  <label for="folder">Select a location:</label>
+  <input type="text" id="folder" name="folder">
+  
+</fieldset>
 
-    <fieldset>
-        <legend>Select location to save stems</legend>
-        <label for="folder">Select a location:</label>
-        <input type="file" id="folder" name="folder">
-        
-    </fieldset>
+<br><br>  
 
-    <br><br>  
+<input type="submit">
+    </form> 
+   
+    <script>
+      const formEl = document.querySelector('.form');
 
-    <input type="submit">
-       
-    </form>   
+      formEl.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+
+        fetch('http://127.0.0.1:5000/library', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(response => response.json())
+          .then(data => console.log(data))
+          .catch(error => console.log(error));
+      });
+
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+
+//     var raw = JSON.stringify({
+//       "name": "spleeter separate -p spleeter:2stems -o output audio_example.mp3"
+// });
+
+//     var requestOptions = {
+//       method: 'POST',
+//       headers: myHeaders,
+//       body: raw,
+//       redirect: 'follow'
+// };
+
+//     fetch("http://127.0.0.1:5000/test", requestOptions)
+//       .then(response => response.text())
+//       .then(result => console.log(result))
+//       .catch(error => console.log('error', error));
+    </script>
 
 </body>
 

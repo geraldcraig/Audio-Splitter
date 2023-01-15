@@ -1,8 +1,10 @@
 from spleeter.separator import Separator
 from flask import Flask, request
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/cli', methods=['POST'])
@@ -11,15 +13,6 @@ def process_audio_cli():
 
     os.system(
         'spleeter separate -p ' + request_data['stems'] + ' -o ' + request_data['folder'] + ' ' + request_data['file'])
-
-    return 'audio processed', 201
-
-
-@app.route('/test', methods=['POST'])
-def process_audio_file():
-    request_data = request.get_json()
-
-    os.system(request_data['name'])
 
     return 'audio processed', 201
 
