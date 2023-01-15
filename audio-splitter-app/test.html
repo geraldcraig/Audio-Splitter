@@ -3,51 +3,60 @@
 </head>
 <body>
    <form id="form" method="post">
-       <input type="text", id="stems" placeholder="Name"/></br>
-       <input type="text", id="file" placeholder="Body"/></br>
-       <input type="text", id="folder" placeholder="Body"/></br>
+       <input type="text", id="name" placeholder="name"/></br>
        <input type="submit" value="Add"/>
     </form> 
     <div>
     <h3>The Following data is successfuly posted</h3>
-    <h4 id="stems"></h4>
-    <h5 id="file"></h5>
-    <h5 id="folder"></h5>
+    <h4 id="title"></h4>
     </div>
 </body>
-<script>
-var form=document.getElementById('form')
+// <script>
+// var form=document.getElementById('form')
 
-form.addEventListener('submit', function(e){
- e.preventDefault()
+// form.addEventListener('submit', function(e){
+//  e.preventDefault()
 
- var stems=document.getElementById('stems').value
- var file=document.getElementById('file').value
- var folder=document.getElementById('folder').value
+//  var name=document.getElementById('name').value
 
- fetch('http://127.0.0.1:5000/cli', {
-  method: 'POST',
-  body: JSON.stringify({
-    stems:stems,
-    file:file,
-    folder:folder,
+// //  fetch('http://127.0.0.1:5000/test', {
+// //   method: 'POST',
+// //   body: JSON.stringify({
+// //     title:name,
 
-  }),
+// //   }),
+// //   headers: {
+// //     'Content-type': 'application/json; charset=UTF-8',
+// //   }
+// //   })
+// //   .then(function(response){ 
+// //   return response.json()})
+// //   .then(function(data)
+// //   {console.log(data)
+// //   title=document.getElementById("title")
+// //   title.innerHTML = data.title
+// // }).catch(error => console.error('Error:', error)); 
+// // });
+
+
+// </script>
+const data = { name: 'example' };
+
+fetch('https://example.com/profile', {
+  method: 'POST', // or 'PUT'
   headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-  }
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
   })
-  .then(function(response){ 
-  return response.json()})
-  .then(function(data)
-  {console.log(data)
-  stems=document.getElementById("stems")
-  file=document.getElementById("file")
-  folder=document.getElementById("folder")
-  stems.innerHTML = data.stems
-  file.innerHTML = data.file 
-  folder.innerHTML = data.folder
-}).catch(error => console.error('Error:', error)); 
-});
-</script>
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+
 </html>
