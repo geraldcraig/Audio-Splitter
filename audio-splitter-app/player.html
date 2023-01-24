@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>Wave Player</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
     <div class="hero">
         <div class="music">
             <img src="media/supreme.jpeg" alt="image">
             <div class="info">
-                <h1>Mercy</h1>
-                <p>Album</p>
+                <h1>John Coltrane</h1>
+                <p>A Love Supreme</p>
+                <div id="waveform"></div>
+                <div class="control-bar">
+                    <img src="media/play.png" alt="play" id="playBtn" title="Play / Pause">
+                    <img src="media/stop.png" alt="stop" id="stopBtn" title="Stop">
+                    <img src="media/volume.png" alt="volume" id="volumeBtn" title="Mute / Unmute">
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        playBtn = document.getElementById("playBtn");
+        stopBtn = document.getElementById("stopBtn");
+        volumeBtn = document.getElementById("volumeBtn");
+
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#e3bbee',
+            progressColor: '#fe38ab',
+            barWidth: 3,
+            responsive: true,
+            hideScrollbar: true,
+            barRadius: 3
+        });
+        wavesurfer.load('media/audio_example.mp3');
+
+        playBtn.onclick = function(){
+            wavesurfer.playPause();
+            if(playBtn.src.match("play")){
+                playBtn.src  = "media/pause.png";
+            }
+            else{
+                playBtn.src = "media/play.png"
+            }
+        }
+        
+        stopBtn.onclick = function(){
+            wavesurfer.stop();
+            playBtn.src = "media/play.png"
+        }
+        
+        volumeBtn.onclick = function(){
+            wavesurfer.toggleMute();
+            if(volumeBtn.src.match("volume")){
+                volumeBtn.src  = "media/mute.png";
+            }
+            else{
+                volumeBtn.src = "media/volume.png"
+            }
+        }
+    </script>
 
 </body>
 </html>

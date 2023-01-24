@@ -22,7 +22,7 @@
     width: 85%;
     padding: 30px;
     box-sizing: border-box;
-    background: #000;
+    background: #fff;
     display: flex;
 }
 .info{
@@ -33,4 +33,14 @@
 .info p{
     font-size: 20px;
     margin: 10px 0 60px;
+}
+
+.control-bar{
+    margin-top: 30px;
+}
+
+.control-bar img{
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
 }
