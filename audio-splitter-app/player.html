@@ -15,7 +15,7 @@
                 <h1>John Coltrane</h1>
                 <p>A Love Supreme</p>
                 <div id="waveform"></div>
-                <div class="control-bar">
+                <div class="controls">
                     <img src="media/play.png" alt="play" id="playBtn" title="Play / Pause">
                     <img src="media/stop.png" alt="stop" id="stopBtn" title="Stop">
                     <img src="media/volume.png" alt="volume" id="volumeBtn" title="Mute / Unmute">
@@ -28,24 +28,24 @@
         stopBtn = document.getElementById("stopBtn");
         volumeBtn = document.getElementById("volumeBtn");
 
-        var wavesurfer = WaveSurfer.create({
+        let wavesurfer = WaveSurfer.create({
             container: '#waveform',
-            waveColor: '#e3bbee',
-            progressColor: '#fe38ab',
-            barWidth: 3,
+            waveColor: '#dde5ec',
+            progressColor: '#03cebf',
+            barWidth: 4,
+            height: 90,
             responsive: true,
             hideScrollbar: true,
-            barRadius: 3
+            barRadius: 4
         });
         wavesurfer.load('media/audio_example.mp3');
 
         playBtn.onclick = function(){
             wavesurfer.playPause();
-            if(playBtn.src.match("play")){
+            if (playBtn.src.includes("play.png")){
                 playBtn.src  = "media/pause.png";
-            }
-            else{
-                playBtn.src = "media/play.png"
+            } else {
+                playBtn.src = "media/play.png";
             }
         }
         
@@ -63,6 +63,11 @@
                 volumeBtn.src = "media/volume.png"
             }
         }
+
+        wavesurfer.on('finish', function () {
+            playBtn.src = "media/play.png";
+            wavesurfer.stop();
+        });
     </script>
 
 </body>
