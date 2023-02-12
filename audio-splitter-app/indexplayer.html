@@ -1,0 +1,159 @@
+<!Doctype html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="player.css">
+    <title>Audio Splitter</title>
+</head>
+<body>
+<div class="container">
+    <form class="form" method="post">
+        <fieldset>
+            <legend>Audio processing options</legend>
+                  <input type="radio" id="stems" name="stems" value="spleeter:2stems">
+                  <label for="2-stems">2-stems: Vocal + Other</label><br>
+                  <input type="radio" id="stems" name="stems" value="spleeter:4stems">
+                  <label for="4-stems">4-stems: Vocal + Drums + Bass + Other</label><br>
+                  <input type="radio" id="stems" name="stems" value="spleeter:5stems">
+                  <label for="5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</label>
+<!--            <label for="stems">Choose a stem:</label>-->
+<!--            <select id="stems" name="stems">-->
+<!--                <option value="spleeter:2-stems">2-stems: Vocal + Other</option>-->
+<!--                <option value="spleeter:4-stems">4-stems: Vocal + Drums + Bass + Other</option>-->
+<!--                <option value="spleeter:5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</option>-->
+<!--            </select>-->
+        </fieldset>
+
+        <br><br>
+
+        <fieldset>
+            <legend>Select an audio file to process</legend>
+            <label for="file">Select audio file:</label>
+            <input type="text" id="file" name="file">
+        </fieldset>
+
+        <br><br>
+
+        <fieldset>
+            <legend>Select location to save stems</legend>
+            <label for="folder">Select a location:</label>
+            <input type="text" id="folder" name="folder">
+
+        </fieldset>
+
+        <br><br>
+
+        <input type="submit">
+    </form>
+
+    <br><br>
+    <div class="mx-auto v-card v-sheet theme--dark dark-grey" style="max-width: 900px;">
+        <div id="player">
+            <div>
+                <h2>audio file</h2>
+                <button type="button" class="v-btn">Play</button>
+                <button type="button" class="v-btn">Stop</button>
+            </div>
+            <div>
+                <div style="overflow: hidden; position: relative;" class="playlist">
+                    <div style="position: relative; left: 0; right: 0; margin-left: 120px;" class="playlist-time-scale">
+                        <div style="position: absolute; left: 0px;" class="time">0.00</div>
+                        <div style="position: absolute; left: 119px;" class="time">0.01</div>
+                        <canvas width="1304" height="30" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0;">
+                    </div>
+                    <div style="overflow: auto;" class="playlist-tracks">
+                        <div style="margin-left: 120px; height: 60px;" class="channel-wrapper bass">
+                            <div style="height: 60px; width: 120px; position: absolute; left: 0; z-index: 10;" class="controls">
+                                <header>bass</header>
+                                <div class="btn-group">
+                                    <span class="btn btn-default btn-xs btn-mute">Mute</span>
+                                    <span class="btn btn-default btn-xs btn-solo">Solo</span>
+                                </div>
+                                <label>
+                                    <input type="range" min="0" max="100" value="100" class="volume-slider">
+                                </label>
+                            </div>
+                            <div style="height: 60px; position: relative;" class="waveform">
+                                <div style="position: absolute; width: 1px; margin: 0; padding: 0; top: 0; left: 0px; bottom: 0; z-index: 5;" class="cursor"></div>
+                                <div style="height: 60px; width: 1304px; top: 0px; left: 0px; position: absolute; margin: 0; padding: 0; z-index: 1;" class="channel channel-0"></div>
+                                <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 1304px;  z-index: 9;" class="playlist-overlay state-cursor"></div>
+                                <div style="position: absolute; width: 1px; bottom: 0; top: 0; left: 0px; z-index: 4;" class="selection point"></div>
+                            </div>
+                        </div>
+                        <div style="margin-left: 120px; height: 60px;" class="channel-wrapper accompaniment">
+                            <div style="height: 60px; width: 120px; position: absolute; left: 0; z-index: 10;" class="controls">
+                                <header>accompaniment</header>
+                                <div class="btn-group">
+                                    <span class="btn btn-default btn-xs btn-mute">Mute</span>
+                                    <span class="btn btn-default btn-xs btn-solo">Solo</span>
+                                </div>
+                                <label>
+                                    <input type="range" min="0" max="100" value="100" class="volume-slider">
+                                </label>
+                            </div>
+                            <div style="height: 60px; position: relative;" class="waveform">
+                                <div style="position: absolute; width: 1px; margin: 0; padding: 0; top: 0; left: 0px; bottom: 0; z-index: 5;" class="cursor"></div>
+                                <div style="height: 60px; width: 1304px; top: 0px; left: 0px; position: absolute; margin: 0; padding: 0; z-index: 1;" class="channel channel-0"></div>
+                                <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 1304px;  z-index: 9;" class="playlist-overlay state-cursor"></div>
+                                <div style="position: absolute; width: 1px; bottom: 0; top: 0; left: 0px; z-index: 4;" class="selection point"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div role="progressbar" aria-valuemin="0" aria-valuemax="100" class="v-progress-linear v-progress-linear--rounded theme--dark" style="height: 0px;"></div>
+            <div style="margin-top: -20px">
+                <b>Keyboard Shortcuts</b>
+                ": Play/Pause: "
+                <kbd></kbd>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1>A Five Items Grid Layout</h1>
+
+        <div class="grid-container">
+            <div class="grid-item item1">1 - timeline</div>
+            <div class="grid-item item2">2 - audio track</div>
+            <div class="grid-item item3">3 - waveform</div>
+            <div class="grid-item item4">4 - vocal</div>
+            <div class="grid-item item5">5 - waveform</div>
+            <div class="grid-item item6">6 - bass</div>
+            <div class="grid-item item7">7 - waveform</div>
+            <div class="grid-item item8">8 - drums</div>
+            <div class="grid-item item9">9 - waveform</div>
+            <div class="grid-item item10">10 - guitar</div>
+            <div class="grid-item item11">11 - waveform</div>
+            <div class="grid-item item12">12 - others</div>
+            <div class="grid-item item13">13 - waveform</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const formEl = document.querySelector('.form');
+
+    formEl.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+
+        fetch('http://127.0.0.1:5000/library', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    });
+
+</script>
+
+</body>
+
+</html>
