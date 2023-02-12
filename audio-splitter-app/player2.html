@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Wave Player</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+</head>
+<body>
+    <div class="hero">
+        <div class="music">
+            <button type="button" id="btn-play" title="Play">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button type="button" id="btn-pause" title="Pause">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="info">
+                <h1>John Coltrane</h1>
+                <p>A Love Supreme</p>
+                <div class="controls">
+                    <img src="media/play.png" alt="play" id="playBtn" title="Play / Pause">
+                    <img src="media/stop.png" alt="stop" id="stopBtn" title="Stop">
+                    <img src="media/volume.png" alt="volume" id="volumeBtn" title="Mute / Unmute">
+                </div>
+                <div id="waveform1"></div>
+                <div id="waveform2"></div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        playBtn = document.getElementById("playBtn");
+        stopBtn = document.getElementById("stopBtn");
+        volumeBtn = document.getElementById("volumeBtn");
+
+        let wavesurfer = WaveSurfer.create({
+            container: '#waveform1',
+            waveColor: '#dde5ec',
+            progressColor: '#03cebf',
+            barWidth: 4,
+            height: 90,
+            responsive: true,
+            hideScrollbar: true,
+            barRadius: 4
+        });
+         wavesurfer.load('media/audio_example.mp3');
+
+
+        let wavesurfer2 = WaveSurfer.create({
+            container: '#waveform2',
+            waveColor: '#dde5ec',
+            progressColor: '#03cebf',
+            barWidth: 4,
+            height: 90,
+            responsive: true,
+            hideScrollbar: true,
+            barRadius: 4
+        });
+        wavesurfer2.load('media/audio_example.mp3');
+
+        playBtn.onclick = function(){
+            wavesurfer.playPause();
+            if (playBtn.src.includes("play.png")){
+                playBtn.src  = "media/pause.png";
+            } else {
+                playBtn.src = "media/play.png";
+            }
+        }
+        
+        stopBtn.onclick = function(){
+            wavesurfer.stop();
+            playBtn.src = "media/play.png"
+        }
+        
+        volumeBtn.onclick = function(){
+            wavesurfer.toggleMute();
+            if(volumeBtn.src.match("volume")){
+                volumeBtn.src  = "media/mute.png";
+            }
+            else{
+                volumeBtn.src = "media/volume.png"
+            }
+        }
+
+        wavesurfer.on('finish', function () {
+            playBtn.src = "media/play.png";
+            wavesurfer.stop();
+        });
+    </script>
+
+</body>
+</html>
