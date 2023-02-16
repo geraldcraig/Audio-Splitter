@@ -2,19 +2,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="player.css">
     <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/ef69927139.js" crossorigin="anonymous"></script>
     <title>Audio Splitter</title>
 </head>
-
 <body>
 <header>
     <h1>Audio Separation Project</h1>
 </header>
-<br>
-
-<section>
-
-    <form id="form" method="post">
+<div class="container">
+    <form class="form" method="post">
         <fieldset>
             <legend>Audio processing options</legend>
             <input type="radio" id="2-stems" name="stems" value="spleeter:2stems">
@@ -23,6 +21,12 @@
             <label for="4-stems">4-stems: Vocal + Drums + Bass + Other</label><br>
             <input type="radio" id="5-stems" name="stems" value="spleeter:5stems">
             <label for="5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</label>
+            <!--            <label for="stems">Choose a stem:</label>-->
+            <!--            <select id="stems" name="stems">-->
+            <!--                <option value="spleeter:2-stems">2-stems: Vocal + Other</option>-->
+            <!--                <option value="spleeter:4-stems">4-stems: Vocal + Drums + Bass + Other</option>-->
+            <!--                <option value="spleeter:5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</option>-->
+            <!--            </select>-->
         </fieldset>
 
         <br><br>
@@ -47,73 +51,11 @@
         <input type="submit">
     </form>
 
-    <script>
-        document.getElementById('form').addEventListener('submit', function (e) {
-            e.preventDefault();
+    <br><br>
 
-            const userStems = document.getElementById('stems');
-            const userFile = document.getElementById('file');
-            const userFolder = document.getElementById('folder');
+</div>
 
-            const formData = new FormData();
-            formData.append('stems', userStems);
-            formData.append('file', userFile);
-            formData.append('folder', userFolder);
-
-            fetch('http://127.0.0.1:5000/library', {
-                method: "POST",
-                body: formData,
-            })
-                .then(result => result.json())
-                .then(data => console.log(data))
-                .then(error => console.log(error))
-        });
-
-        // document.getElementById('form').addEventListener('submit', function(e) {
-        //   e.preventDefault();
-
-        //   const userStems = document.getElementById('stems');
-        //   const userFile = document.getElementById('file');
-        //   const userFolder = document.getElementById('folder');
-
-        //   const formData = new FormData();
-        //   formData.append('user-stems', userStems);
-        //   formData.append('user-file', userFile);
-        //   formData.append('user-folder', userFolder);
-
-        //   fetch('https://httpbin.org/post', {
-        //     method: "POST",
-        //     body: formData,
-        //   })
-        //   .then(result => result.json())
-        //   .then(data => console.log(data))
-        //   .then(error => console.log(error))
-        // });
-
-        // var myHeaders = new Headers();
-        // myHeaders.append("Content-Type", "application/json");
-
-        // var raw = JSON.stringify({
-        //   "stems": "spleeter:4stems",
-        //   "file": "audio_example.mp3",
-        //   "folder": "output4"
-        // });
-
-        // var requestOptions = {
-        //   method: 'POST',
-        //   headers: myHeaders,
-        //   body: raw,
-        //   redirect: 'follow'
-        // };
-
-        // fetch("http://127.0.0.1:5000/library", requestOptions)
-        //   .then(response => response.text())
-        //   .then(result => console.log(result))
-        //   .catch(error => console.log('error', error));
-
-    </script>
-
-</section>
+</div>
 
 <br><br>
 <br><br>
@@ -123,6 +65,28 @@
 <footer>
     <p>Gerald Craig &copy 2023</p>
 </footer>
+
+<script>
+    const formEl = document.querySelector('.form');
+
+    formEl.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+
+        fetch('http://127.0.0.1:5000/library', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    });
+</script>
 
 </body>
 

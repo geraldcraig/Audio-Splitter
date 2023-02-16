@@ -1,0 +1,122 @@
+<!Doctype html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="player.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/ef69927139.js" crossorigin="anonymous"></script>
+    <title>Audio Splitter</title>
+</head>
+<body>
+<header>
+    <h1>Audio Separation Project</h1>
+</header>
+<div class="container">
+    <form class="form" method="post">
+        <fieldset>
+            <legend>Audio processing options</legend>
+                  <input type="radio" id="2-stems" name="stems" value="spleeter:2stems">
+                  <label for="2-stems">2-stems: Vocal + Other</label><br>
+                  <input type="radio" id="4-stems" name="stems" value="spleeter:4stems">
+                  <label for="4-stems">4-stems: Vocal + Drums + Bass + Other</label><br>
+                  <input type="radio" id="5-stems" name="stems" value="spleeter:5stems">
+                  <label for="5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</label>
+<!--            <label for="stems">Choose a stem:</label>-->
+<!--            <select id="stems" name="stems">-->
+<!--                <option value="spleeter:2-stems">2-stems: Vocal + Other</option>-->
+<!--                <option value="spleeter:4-stems">4-stems: Vocal + Drums + Bass + Other</option>-->
+<!--                <option value="spleeter:5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</option>-->
+<!--            </select>-->
+        </fieldset>
+
+        <br><br>
+
+        <fieldset>
+            <legend>Select an audio file to process</legend>
+            <label for="file">Select audio file:</label>
+            <input type="text" id="file" name="file">
+        </fieldset>
+
+        <br><br>
+
+        <fieldset>
+            <legend>Select location to save stems</legend>
+            <label for="folder">Select a location:</label>
+            <input type="text" id="folder" name="folder">
+
+        </fieldset>
+
+        <br><br>
+
+        <input type="submit">
+    </form>
+
+    <br><br>
+
+    </div>
+    <div>
+        <h1>Waveform Player</h1>
+
+        <div class="grid-container">
+            <div class="grid-item item1">
+            
+             <button type="button" id="btn-play" title="Play">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button type="button" id="btn-pause" title="Pause">
+                <i class="fas fa-play"></i>
+            </button>
+            1 - timeline
+           </div>
+            <div class="grid-item item2">
+            2 - unmixed track
+            </div>
+            <div class="grid-item item3">3 - waveform</div>
+            <div class="grid-item item4">4 - vocal</div>
+            <div class="grid-item item5">5 - waveform</div>
+            <div class="grid-item item6">6 - drums</div>
+            <div class="grid-item item7">7 - waveform</div>
+            <div class="grid-item item8">8 - bass</div>
+            <div class="grid-item item9">9 - waveform</div>
+            <div class="grid-item item10">10 - piano</div>
+            <div class="grid-item item11">11 - waveform</div>
+            <div class="grid-item item12">12 - others</div>
+            <div class="grid-item item13">13 - waveform</div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+<footer>
+    <p>Gerald Craig &copy 2023</p>
+</footer>
+
+<script>
+    const formEl = document.querySelector('.form');
+
+    formEl.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+
+        fetch('http://127.0.0.1:5000/library', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    });
+</script>
+
+</body>
+
+</html>
