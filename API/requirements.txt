@@ -1,0 +1,4 @@
+ffmpeg
+spleeter==2.3.1
+Flask==1.1.4
+flask_cors
