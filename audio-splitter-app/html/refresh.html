@@ -2,8 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="player.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../css/player.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/waveform-playlist@4.2.2/styles/playlist.css">
     <script src="https://kit.fontawesome.com/ef69927139.js" crossorigin="anonymous"></script>
     <title>Audio Splitter</title>
 </head>
@@ -57,14 +58,44 @@
 
 </div>
 
-<br><br>
-<br><br>
-<br><br>
-<br><br>
+<button type="button" id="btn-play" title="Play">
+    <i class="fas fa-play"></i>
+</button>
+<button type="button" id="btn-pause" title="Pause">
+    <i class="fas fa-pause"></i>
+</button>
+<div id="playlist"></div>
 
 <footer>
     <p>Gerald Craig &copy 2023</p>
 </footer>
+
+<script src="https://unpkg.com/waveform-playlist@4.2.2/build/waveform-playlist.var.min.js"></script>
+<script>
+    var playlist = WaveformPlaylist.init({
+        container: document.getElementById("playlist"),
+        samplesPerPixel: 128,
+        zoomLevels: [128, 256, 512],
+        controls: {
+            show: true
+        }
+    });
+
+    playlist.load([
+        {
+            src: "../audio_example.mp3"
+        }
+    ]).then(function () {
+        var ee = playlist.getEventEmitter();
+        document.getElementById("btn-play").addEventListener("click", function () {
+            ee.emit("play");
+        });
+
+        document.getElementById("btn-pause").addEventListener("click", function () {
+            ee.emit("pause");
+        });
+    });
+</script>
 
 <script>
     const formEl = document.querySelector('.form');

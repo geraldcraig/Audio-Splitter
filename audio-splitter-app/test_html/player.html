@@ -4,30 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>Wave Player</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
     <div class="hero">
         <div class="music">
-            <button type="button" id="btn-play" title="Play">
-                <i class="fas fa-pause"></i>
-            </button>
-            <button type="button" id="btn-pause" title="Pause">
-                <i class="fas fa-play"></i>
-            </button>
+            <img src="../media/supreme.jpeg" alt="image">
             <div class="info">
                 <h1>John Coltrane</h1>
                 <p>A Love Supreme</p>
-                <div class="controls">
-                    <img src="media/play.png" alt="play" id="playBtn" title="Play / Pause">
-                    <img src="media/stop.png" alt="stop" id="stopBtn" title="Stop">
-                    <img src="media/volume.png" alt="volume" id="volumeBtn" title="Mute / Unmute">
-                </div>
                 <div id="waveform1"></div>
-                <div id="waveform2"></div>
+                <div class="controls">
+                    <img src="../media/play.png" alt="play" id="playBtn" title="Play / Pause">
+                    <img src="../media/stop.png" alt="stop" id="stopBtn" title="Stop">
+                    <img src="../media/volume.png" alt="volume" id="volumeBtn" title="Mute / Unmute">
+                </div>
             </div>
-            
         </div>
     </div>
     <script>
@@ -45,20 +38,7 @@
             hideScrollbar: true,
             barRadius: 4
         });
-         wavesurfer.load('media/audio_example.mp3');
-
-
-        let wavesurfer2 = WaveSurfer.create({
-            container: '#waveform2',
-            waveColor: '#dde5ec',
-            progressColor: '#03cebf',
-            barWidth: 4,
-            height: 90,
-            responsive: true,
-            hideScrollbar: true,
-            barRadius: 4
-        });
-        wavesurfer2.load('media/audio_example.mp3');
+        wavesurfer.load('media/audio_example.mp3');
 
         playBtn.onclick = function(){
             wavesurfer.playPause();
