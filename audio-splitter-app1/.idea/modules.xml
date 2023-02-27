@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../audio-splitter-app.iml" filepath="$PROJECT_DIR$/../audio-splitter-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/audio-splitter-app.iml" filepath="$PROJECT_DIR$/.idea/audio-splitter-app.iml" />
     </modules>
   </component>
 </project>
