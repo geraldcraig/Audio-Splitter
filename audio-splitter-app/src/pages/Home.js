@@ -1,0 +1,84 @@
+const Home = () => {
+    return <body>
+
+    <div id="container">
+    <form class="form" method="post">
+        {/* <fieldset>
+            <legend>Audio processing options</legend>
+            <input type="radio" id="2-stems" name="stems" value="spleeter:2stems">
+            <label for="2-stems">2-stems: Vocal + Other</label><br>
+            <input type="radio" id="4-stems" name="stems" value="spleeter:4stems">
+            <label for="4-stems">4-stems: Vocal + Drums + Bass + Other</label><br>
+            <input type="radio" id="5-stems" name="stems" value="spleeter:5stems">
+            <label for="5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</label>
+            <!--            <label for="stems">Choose a stem:</label>-->
+            <!--            <select id="stems" name="stems">-->
+            <!--                <option value="spleeter:2-stems">2-stems: Vocal + Other</option>-->
+            <!--                <option value="spleeter:4-stems">4-stems: Vocal + Drums + Bass + Other</option>-->
+            <!--                <option value="spleeter:5-stems">5-stems: Vocal + Drums + Bass + Piano + Other</option>-->
+            <!--            </select>-->
+        </fieldset> */}
+
+        {/* <br><br> */}
+
+        <fieldset>
+            <legend>Select an audio file to process</legend>
+            <label for="file">Select audio file:</label>
+            <input type="text" id="file" name="file" />
+        </fieldset>
+
+        {/* <br><br> */}
+
+        <fieldset>
+            <legend>Select location to save stems</legend>
+            <label for="folder">Select a location:</label>
+            <input type="text" id="folder" name="folder" />
+
+        </fieldset>
+
+        {/* <br><br> */}
+
+        <input type="submit" />
+    </form>
+
+    {/* <br><br> */}
+
+</div>
+
+{/* </div> */}
+
+{/* <br><br>
+<br><br>
+<br><br>
+<br><br> */}
+
+<footer>
+    <p>Gerald Craig &copy 2023</p>
+</footer>
+
+{/* <script>
+    const formEl = document.querySelector('.form');
+
+    formEl.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+
+        fetch('http://127.0.0.1:5000/library', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    });
+</script> */}
+
+</body>;
+};
+
+export default Home;
