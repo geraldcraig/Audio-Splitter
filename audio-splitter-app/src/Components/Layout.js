@@ -19,6 +19,7 @@ const Layout = () => {
                         <th><NavLink to="/home">Home</NavLink></th>
                         <th><NavLink to="/player">Wave Player</NavLink></th>
                         <th><NavLink to="/model">Model Training</NavLink></th>
+                        <th><NavLink to="/radioform">Radio Form</NavLink></th>
                     </tr>
                     </thead>
                 </table>
